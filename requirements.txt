@@ -19,3 +19,4 @@ six==1.11.0
 uWSGI==2.0.17
 vine==1.1.4
 webencodings==0.5.1
+gunicorn==19.9.0
