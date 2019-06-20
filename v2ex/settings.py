@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import django_heroku
+import dj_database_url
 
 from celery.schedules import crontab
 
@@ -30,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-REDIS_URL = os.environ["REDIS_URL"]
+REDIS_URL = str(os.environ.get("REDIS_URL"))
 
 
 # Application definition
@@ -93,6 +94,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
