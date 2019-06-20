@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+REDIS_URL = os.environ["REDIS_URL"]
 
 
 # Application definition
@@ -141,7 +142,7 @@ CACHES = {
     # 默认配置，cache 单独使用
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": REDIS_URL+"/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -149,7 +150,7 @@ CACHES = {
     # 新增配置让session 使用，
     "session": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/0",
+        "LOCATION": REDIS_URL+"/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -195,7 +196,7 @@ AVATAR_FILE_PATH = os.path.join(BASE_DIR, 'static', 'img')
 
 # CELERY 配置
 # BROKER 地址
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/2'
+CELERY_BROKER_URL = REDIS_URL+"/2"
 # RESULT 返回到数据库中（可选返回cache中）
 CELERY_RESULT_BACKEND = 'django-db'
 # 接受的格式json
