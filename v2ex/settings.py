@@ -134,6 +134,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # 缓存相关
 CACHES = {
     # 默认配置，cache 单独使用
