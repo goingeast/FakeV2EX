@@ -1,8 +1,10 @@
 # pycache
-/__pycache__
+__pycache__/
 
 # .idea
 /.idea
 
 #db.sqlite3
 db.sqlite3
+
+.python-version
